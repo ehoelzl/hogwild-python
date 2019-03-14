@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-APP_NAME=hogwild
-REPO=liabifano
-KUBER_LOGIN=cs449g9
+APP_NAME=hogwild-test
+REPO=ehoelzl
+KUBER_LOGIN=cs449g11
 
 DATA_PATH=/data/datasets
 
@@ -41,8 +41,8 @@ function shutdown_infra {
 }
 
 echo
-echo "----- Logging into Docker Hub -----"
-docker login --username=$DOCKER_USER --password=$DOCKER_PASS 2> /dev/null
+#echo "----- Logging into Docker Hub -----"
+#docker login --username=$DOCKER_USER --password=$DOCKER_PASS 2> /dev/null
 
 echo
 echo "----- Deleting remaining infra -----"

@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: coordinator-service
-          image: liabifano/hogwild:latest
+          image: ehoelzl/hogwild:latest
           env:
             - name: N_WORKERS
               valueFrom:
@@ -72,4 +72,4 @@ spec:
       volumes:
         - name: shared-volume
           persistentVolumeClaim:
-            claimName: cs449g9-scratch
+            claimName: cs449g11-scratch
