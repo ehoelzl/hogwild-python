@@ -111,7 +111,7 @@ def svm_subprocess(task_queue, response_queue, val_indices):
     svm = SVM(learning_rate=s.learning_rate, lambda_reg=s.lambda_reg, dim=dim)
 
     while True:
-        next_task = task_queue.get()
+        next_task = task_queue.get()  # Blocked as long as no tasks
         if next_task is None:
             # Poison pill means shutdown
             print('SVM subprocess got poison pill. Exiting from subprocess.')

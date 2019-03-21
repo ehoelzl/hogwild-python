@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: workers-service
-          image: ehoelzl/hogwild:latest
+          image: ehoelzl/hogwild-test:latest
           env:
             - name: N_WORKERS
               valueFrom:

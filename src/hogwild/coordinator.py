@@ -47,6 +47,7 @@ if __name__ == '__main__':
     svm_proc.start()
 
     # Step 4: Create a listener for the coordinator
+    # hws is the Servicer (receives messages), server is the GRPC server
     hws, server = create_servicer(s.port)
 
     # Step 5: Send start message to all the workers
