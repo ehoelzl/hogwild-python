@@ -28,10 +28,10 @@ TEST_FILES = [os.path.join(DATA_PATH, x) for x in ['lyrl2004_vectors_test_pt0.da
 running_mode = os.environ.get('RUNNING_MODE') if os.environ.get('RUNNING_MODE') else 'synchronous'
 synchronous = running_mode == 'synchronous'
 
-subset_size = 100  # Number of datapoints to train on each epoch
+subset_size = 10  # Number of datapoints to train on each epoch
 # Learning rate for SGD. The term (100/subset_size) is used to adapt convergence to different subset sizes than 100
 learning_rate = 0.03 * (100 / subset_size) / len(worker_addresses)
 validation_split = 0.1  # Percentage of validation data
-epochs = 1000  # Number of training iterations over subset on each node
+epochs = 500  # Number of training iterations over subset on each node
 persistence = 15  # Abort if after so many epochs learning rate does not decrease
 lambda_reg = 1e-5  # Regularization parameter

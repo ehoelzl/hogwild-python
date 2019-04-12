@@ -3,7 +3,6 @@ from hogwild import ingest_data
 from hogwild import settings as s
 from hogwild.utils import dotproduct, sign
 
-
 class SVM:
     def __init__(self, learning_rate, lambda_reg, dim):
         self.__learning_rate = learning_rate
@@ -64,6 +63,7 @@ class SVM:
         return self.__getRegLambda() * sum([w[i] ** 2 for i in x.keys()]) / len(x)
 
     def __regularizer_g(self, x):
+        # TODO: Here, the regularizer is not right, it should be divided by Du (see Hogwild) => Should be a vector
         '''Returns the gradient of the regularization term  '''
         w = self.__getW()
         return 2 * self.__getRegLambda() * sum([w[i] for i in x.keys()]) / len(x)

@@ -66,19 +66,21 @@ if __name__ == '__main__':
         n_epochs = 1
         # Run until SGD is done or stopping criterion was reached
         while hws.epochs_done != len(s.worker_addresses) and not stopping_crit_reached:
+            start_epoch = time()
             # If SYNC
             if s.synchronous:
                 # Wait for the weight updates from all workers
                 while not hws.wait_for_all_workers_counter == len(s.worker_addresses):
                     pass
-                # Send accumulated weight update to all workers
+                # Send accumulated weight update to all workers (in hws.all_delta_w)
                 for stub in stubs.values():
                     weight_update = hogwild_pb2.WeightUpdate(delta_w=hws.all_delta_w)
                     response = stub.GetWeightUpdate(weight_update)
                 # Use accumulated weight updates to update own SVM weights
                 task_queue.put({'type': 'update_weights',
                                 'all_delta_w': hws.all_delta_w})
-                hws.all_delta_w = {}
+                
+                hws.all_delta_w = {}  # Reset delta_w
                 hws.wait_for_all_workers_counter = 0
                 # Wait for the ReadyToGo from all workers
                 while not hws.ready_to_go_counter == len(s.worker_addresses):
